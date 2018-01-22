@@ -1,0 +1,60 @@
+#include<iostream>
+#include<string.h>
+#include <sstream>
+using namespace std;
+int main()
+{
+int max=999999;
+int x=max;
+int a[10][10]={
+ {x,4,2,3,x,x,x,x,x,x},
+ {x,x,x,x,10,9,x,x,x,x},
+ {x,x,x,x,6,7,10,x,x,x},
+ {x,x,x,x,x,3,8,x,x,x},
+ {x,x,x,x,x,x,x,4,8,x},
+ {x,x,x,x,x,x,x,9,6,x},
+ {x,x,x,x,x,x,x,5,4,x},
+ {x,x,x,x,x,x,x,x,x,8},
+ {x,x,x,x,x,x,x,x,x,4},
+ {x,x,x,x,x,x,x,x,x,x}};
+ int midis[10];
+ int path[10];
+ //dis()
+ for(int i=0;i<10;++i)
+{
+	midis[i]=max;
+	path[i]=-1;
+}
+ midis[0]=0;
+for(int i=1;i<=9;++i)
+{
+ for(int j=0;j<i;++j)
+ {
+	 if(a[j][i]!=x)
+	 {int tem=midis[j]+a[j][i];
+      if(midis[i]>tem) {midis[i]=tem;path[i]=j;}
+	 }
+ }
+}
+for(int i=1;i<=9;++i)
+{
+ cout<<"顶点"<<i<<"到源点的最短距离为"<<midis[i]<<endl;
+ cout<<"最短路径为： ";
+ string c1,c2;
+ int tt2=i;
+ while(tt2!=-1)
+ {
+     stringstream ss;
+     ss<<tt2;
+     ss>>c1;
+     ss.str("");
+	c2=c1+" "+c2;
+    //cout<<tt2<<" ";
+    tt2=path[tt2];
+
+ }
+  cout<<c2<<endl;
+
+}
+return 0;
+}
